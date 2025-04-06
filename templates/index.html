@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Crypto News - {{ symbol }}</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .news-item { border-bottom: 1px solid #ccc; padding: 10px 0; }
+        .title { font-size: 1.2em; font-weight: bold; }
+        .meta { color: #777; font-size: 0.9em; }
+        .sentiment { margin-top: 5px; font-weight: bold; }
+    </style>
+</head>
+<body>
+    {% if let Some(user) = username %}
+    <p style="text-align:right;">
+      👤 Logged in as <strong>{{ user }}</strong> |
+      <a href="/account">Account</a> |
+      <a href="/logout">Logout</a>
+    </p>
+  {% endif %}  
+
+    <h1>Crypto News for {{ symbol }}</h1>
+    {% if error != "" %}
+        <p style="color: red;">{{ error }}</p>
+    {% endif %}
+
+    {% for item in news %}
+        <div class="news-item">
+            <div class="title"><a href="{{ item.url }}">{{ item.title }}</a></div>
+            <div class="meta">{{ item.source_name }} – {{ item.date }}</div>
+            <p>{{ item.summary }}</p>
+            <p class="sentiment">
+                Sentiment:
+                {% if item.sentiment == "positive" %}
+                    <span style="color: green;">👍 Positive</span>
+                {% else if item.sentiment == "negative" %}
+                    <span style="color: red;">👎 Negative</span>
+                {% else %}
+                    <span style="color: gray;">😐 Neutral</span>
+                {% endif %}
+            </p>            
+        </div>
+    {% endfor %}
+</body>
+</html>

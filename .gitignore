@@ -1,0 +1,33 @@
+# Rust build files
+/target/
+**/*.rs.bk
+
+# Rust environment files
+.env
+.env.local
+.env.*.local
+
+# Logs
+*.log
+log/
+logs/
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# VS Code settings
+.vscode/
+
+# Node.js backend
+node_modules/
+auth-api/node_modules/
+auth-api/.env
+auth-api/package-lock.json
+auth-api/.DS_Store
+
+# Dependency folders from tools (optional)
+.cargo/
+.npm/
+.cache/
+.idea/
